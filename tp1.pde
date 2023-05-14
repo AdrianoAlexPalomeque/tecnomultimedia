@@ -24,7 +24,9 @@ int altoDisplay = 480;
 
 //aumento de tamaño
 int tam;
+int tamc;
 int tamdragon;
+int tamdragonc;
 
 //imagenes
 PImage papel;
@@ -38,9 +40,17 @@ PImage mini4imagen3;
 PImage i4magen1;
 PImage i4magen2;
 PImage i4magen3;
+PImage sakura;
+PImage samurai;
+PImage dragoncompleto;
 //animacion imagenes estado3
 int posx =0;
 int posxb=840;
+//movertexto3
+int movertexto1 = anchoDisplay;
+int movertexto2 = anchoDisplay;
+int movertexto3 = anchoDisplay;
+int moveraa = anchoDisplay;
 //animacion rect estado 4
 int posya = altoDisplay;
 int posya2 = altoDisplay;
@@ -53,7 +63,12 @@ int posxi2 = 30;
 int posyi2 = 120;
 int posxi3 = 30;
 int posyi3 = 120;
-
+//animacion imagen estado else
+float posx4e = -640;
+float posx4e2 = 0;
+float posx4r = -1280;
+int posx4eb = 30;
+int posy4eb = 50;
 //opacidad texto
 float opacidad;
 float opacidad2;
@@ -75,6 +90,9 @@ int posx2 = anchoDisplay/2;
 int posyt = altoDisplay-1060;
 int posyt2 = altoDisplay-1060;
 int posyt3 = altoDisplay-1060;
+int movtexto4 = altoDisplay-1060;
+int movtexto4a = altoDisplay-1060;
+int movtexto4b = altoDisplay-1060;
 //Fuente texto
 PFont fuenteflama,fuentefachera2;
 
@@ -114,9 +132,12 @@ void setup() {
      i4magen1 = loadImage("4imagen1.jpg");
      i4magen2 = loadImage("4imagen2.jpg");
      i4magen3 = loadImage("4imagen3.jpg");
+ //IMAGEN ESTADO ELSE
+ sakura = loadImage("sakura.jpg");
+ samurai = loadImage("samurai.jpg");
+  dragoncompleto = loadImage("dragoncompleto.png");
 }
 void draw() {
-  println("posyxd"+posy);
   if (contador) {
     tiempo++;
   }
@@ -124,7 +145,6 @@ void draw() {
   if (estados.equals("inicio")) {
     botoninicio = true;
     image(papel, anchoDisplay/2, altoDisplay/2, anchoDisplay, altoDisplay);
-
     //CAMBIO DE PERGAMINO
     if (tiempo <15) {
       image(pergamino, anchoDisplay/2, altoDisplay/2, anchoDisplay/2-150, altoDisplay/2-170);
@@ -157,8 +177,6 @@ void draw() {
     } else if (tiempo>=150 && tiempo < 900) {
       background(0);
     }
-    //extra
-    text("x:"+mouseX+"Y:"+mouseY, mouseX, mouseY);
     //CURSOR
     image(cursor1, mouseX, mouseY, 75, 75);
   }
@@ -169,6 +187,18 @@ void draw() {
     if (tamdragon <= altoDisplay+15) {
       tamdragon = tamdragon+30;
     }
+    if (tiempo >=300){
+    background(0);
+    }
+        if(tiempo >=400){
+         image (dragoncompleto, anchoDisplay/2, altoDisplay/2, tamdragonc, tamdragonc+50);
+        if (tamdragonc <= altoDisplay+200000) {
+         tamdragonc = tamdragonc+100;
+         if(tiempo>=430){
+          tamdragonc = tamdragonc+1920;
+         }
+    }
+   }
   }
   //PANTALLA2
   else if (estados.equals("pantalla2")) {
@@ -253,7 +283,7 @@ void draw() {
 
 //PANTALLA 4
 
- } else if (estados.equals("pantalla4")) { //parrafo 382
+ } else if (estados.equals("pantalla4")) { //parrafo 438
    
    
    //PARTE 1
@@ -267,7 +297,7 @@ void draw() {
    if (tiempo >= 1900 && tiempo <2100){
       fill(255);
       textSize(15);
-      text("ALGUNOS LUGARES DESTACADOS:" ,30 ,posyt);
+      text("ALGUNOS LUGARES DESTACADOS DE KYOTO:" ,30 ,posyt);
       if (posyt <= 30){
         posyt=posyt+60;
        }
@@ -291,10 +321,16 @@ void draw() {
    }
    fill(255);
    textSize(15);
-   text("TEMPLO KIYOMIZU-DERA", 30,60);
+   text("TEMPLO KIYOMIZU-DERA", 30,movtexto4);
+      if (movtexto4 <= 30){
+        movtexto4=movtexto4+60;
+       }
    textSize(11);
-   text("El templo Kiyomizu-dera: es uno\n de los templos más famosos de Japón \ny se encuentra en una colina \ncon vistas impresionantes de la ciudad.", 350,130);
-   text("Fue fundado en el año 778 y reconstruido\n varias veces a lo largo de los siglos, la\n estructura actual data del año 1633. El templo\n es conocido por su arquitectura y diseño único,\n que incluye una plataforma principal construida\n sobre pilares de madera de más de 13 metros\n de altura y vistas impresionantes de la ciudad\n de Kyoto desde sus terrazas.",345,200);
+             if (movertexto1 >= 350){
+           movertexto1 = movertexto1-10;
+       }
+   text("El templo Kiyomizu-dera: es uno\n de los templos más famosos de Japón \ny se encuentra en una colina \ncon vistas impresionantes de la ciudad.", movertexto1,130);
+   text("Fue fundado en el año 778 y reconstruido\n varias veces a lo largo de los siglos, la\n estructura actual data del año 1633. El templo\n es conocido por su arquitectura y diseño único,\n que incluye una plataforma principal construida\n sobre pilares de madera de más de 13 metros\n de altura y vistas impresionantes de la ciudad\n de Kyoto desde sus terrazas.",movertexto1,200);
 
 
 //  PARTE 2
@@ -310,7 +346,7 @@ void draw() {
    if (tiempo >= 2800 && tiempo <3100){
       fill(255);
       textSize(15);
-      text("ALGUNOS LUGARES DESTACADOS:" ,30 ,posyt2);
+      text("ALGUNOS LUGARES DESTACADOS DE KYOTO:" ,30 ,posyt2);
       if (posyt2 <= 30){
         posyt2=posyt2+60;
        }
@@ -335,10 +371,16 @@ void draw() {
    }
    fill(255);
    textSize(15);
-   text("TEMPLO RYOAN-JI", 30,60);
+   text("TEMPLO RYOAN-JI", 30,movtexto4a);
+         if (movtexto4a <= 30){
+        movtexto4a=movtexto4a+60;
+       }
    textSize(11);
-   text("El templo Ryoan-ji: conocido\n por su jardín de rocas zen,considerado\n uno de los más famosos del mundo.", 350,130);
-   text("Fue fundado a finales del siglo XV por \n un oficial de la corte japonesa y se\n ha convertido en uno de los destinos turísticos\n más populares de la ciudad debido su\n famoso jardín de rocas.",345,200);
+          if (movertexto2 >= 350){
+           movertexto2 = movertexto2-10;
+       }
+   text("El templo Ryoan-ji: conocido\n por su jardín de rocas zen,considerado\n uno de los más famosos del mundo.", movertexto2,130);
+   text("Fue fundado a finales del siglo XV por \n un oficial de la corte japonesa y se\n ha convertido en uno de los destinos turísticos\n más populares de la ciudad debido su\n famoso jardín de rocas.",movertexto2,200);
    }
    
    
@@ -355,7 +397,7 @@ void draw() {
    if (tiempo >= 3800 && tiempo <4000){
       fill(255);
       textSize(15);
-      text("AlGUNOS LUGARES DESTACADOS:" ,30 ,posyt3);
+      text("ALGUNOS LUGARES DESTACADOS DE KYOTO:" ,30 ,posyt3);
       if (posyt3 <= 30){
         posyt3=posyt3+60;
        }
@@ -380,23 +422,61 @@ void draw() {
    }
    fill(255);
    textSize(15);
-   text("TEMPLO KINKAKU-JI", 30,60);
+   text("TEMPLO KINKAKU-JI", 30,movtexto4b);
+      if (movtexto4b <= 30){
+        movtexto4b=movtexto4b+60;
+       }
    textSize(11);
-   text("El templo Kinkaku-ji: también conocido\n como el Pabellón Dorado, es uno de\n los símbolos más icónicos de Kyoto.", 350,130);
-   text(" Fue construido originalmente en 1397 como una\n villa de descanso para el shogun Ashikaga\n Yoshimitsu, pero después de su muerte, se\n convirtió en un templo budista Zen.",345,200);
+       if (movertexto3 >= 350){
+           movertexto3 = movertexto3-10;
+       }
+   text("El templo Kinkaku-ji: también conocido\n como el Pabellón Dorado, es uno de\n los símbolos más icónicos de Kyoto.",movertexto3,130);
+   text(" Fue construido originalmente en 1397 como una\n villa de descanso para el shogun Ashikaga\n Yoshimitsu, pero después de su muerte, se\n convirtió en un templo budista Zen.",movertexto3,200);
    }
    
    //PANTALLA ELSE
  }else {
-   if(tiempo >=5000){
-     cursor();
-     fill(0,255,0);
-     rectMode(CENTER);
-     rect(anchoDisplay/2, altoDisplay/2, anchoDisplay/2-150, altoDisplay/2-170);
-botonreinicio = true;
+   textAlign(CORNER);
+   if(tiempo >=4600){
+     image(sakura,posx4e,0,posx4e2,altoDisplay);
+     if (posx4e < 640){
+     posx4e=posx4e+25;
+     }
+     if(posx4e2 < 1280){
+       posx4e2=posx4e2+20;
+     }
+     fill(255);
+     rect(posx4r,0,-640,480);
+     if (posx4r < 1280){
+       posx4r=posx4r+40;
+     }
    }
+     if(tiempo >=4700 && tiempo < 5000){
+       background(255);
+       image(samurai,30, 50, posx4eb,posy4eb);
+       if (posx4eb <= 220){
+         posx4eb= posx4eb+5;
+       }
+        if (posy4eb <= altoDisplay-200){
+         posy4eb= posy4eb+5;
+         
+       }
+       textSize(11);
+       fill(0);
+   if (moveraa >= 265){
+           moveraa = moveraa-10;
   }
-
+  text("Durante el período feudal de Japón, Kioto fue la capital\n del país y un lugar donde muchos samuráis vivían y\n entrenaban en artes marciales. Kioto también fue escenario\n de enfrentamientos entre diferentes clanes samuráis durante\n el período Sengoku. A pesar de esto, Kioto siguió siendo un\n importante centro cultural y religioso en Japón. En la\n actualidad, se pueden visitar varios sitios históricos\n relacionados con los samuráis en Kioto.",moveraa,120);
+     }else if (tiempo>=5000){
+     cursor();
+     fill(255,0,0);
+     rect(anchoDisplay-50,altoDisplay-50,anchoDisplay,altoDisplay);
+     fill(0);
+     textSize(45);
+     text("R",595,475);
+          botonreinicio=true;
+     }
+   }
 
   //Maquina de estados
   if (tiempo <150) {   //tiempo en el que se termina de romper el pergamino
@@ -407,22 +487,21 @@ botonreinicio = true;
     estados = "pantalla2";
   } else if (tiempo >=1100 && tiempo < 1800) {
     estados = "pantalla3";
-  } else if (tiempo >=1800 && tiempo < 5000) {
+  } else if (tiempo >=1800 && tiempo < 4600) {
     estados = "pantalla4";
   } else {
     estados= "otra";
  }
-  println(estados);
-  println(tiempo);
+ ///EXTRA
+//  println(estados);
+//println(tiempo);
 //  println(opacidad);
 //  println(tiempotexto);
-  textAlign(CORNER);
-  // text("fps"+frameRate,50,50);
 }
 //Boton inicio
 void mouseDragged() {
   if (botoninicio) {
-    if (mouseX>botoninicioX && mouseX<botoninicioX2 && mouseY>botoninicioY && mouseY<botoninicioY2) {
+     if (mouseX>botoninicioX && mouseX<botoninicioX2 && mouseY>botoninicioY && mouseY<botoninicioY2) {
       tiempo++;
       contador = true;
       botoninicio = false;
@@ -433,7 +512,7 @@ void mouseDragged() {
 
 void mousePressed(){
   if (botonreinicio){
-     if (mouseX>botoninicioX && mouseX<botoninicioX2 && mouseY>botoninicioY && mouseY<botoninicioY2) {
+  if (mouseX>590 && mouseX< 640 && mouseY>430 && mouseY< 480) {
   estados = "inicio";
   fill(255);
   rectMode(CORNER);
@@ -444,6 +523,7 @@ void mousePressed(){
   botoninicio = true;
   contador= false;
   tamdragon=0;
+    tamdragonc=0;
   tam=0;
   posy2 = altoDisplay/2;
   posy = altoDisplay/2+22;
@@ -458,19 +538,26 @@ void mousePressed(){
   posyt = altoDisplay-1060;
     posyt2 = altoDisplay-1060;
         posyt3 = altoDisplay-1060;
+     movtexto4 = altoDisplay-1060;
+     movtexto4a = altoDisplay-1060;
+     movtexto4b = altoDisplay-1060;
   posxi = 30;
   posyi = 120;
    posxi2 = 30;
   posyi2 = 120;
    posxi3 = 30;
   posyi3 = 120;
+  posx4r = -1280;
+  posy4eb = 50;
+  posx4eb = 30;
+  posx4e = -640;
+ posx4e2 = 0;
+ movertexto1 = anchoDisplay;
+ movertexto2 = anchoDisplay;
+ movertexto3 = anchoDisplay;
+  moveraa= altoDisplay;
   imageMode(CENTER);
-  botonreinicio=false;
+  botonreinicio=false; 
    }
   }
 }
-/*/void mousePressed(){
- if(mouseX>botoninicioX && mouseX<botoninicioX2 && mouseY>botoninicioY && mouseY<botoninicioY2){
- }
- }
-/*/

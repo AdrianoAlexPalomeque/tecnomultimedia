@@ -101,7 +101,7 @@ void setup() {
   noCursor();
   textSize(50);
   cursor1 = loadImage("katana.png");
-  papel = loadImage("papel.jpg");
+  papel = loadImage("papela.jpg");
   Dragon = loadImage("dragon.png");
 
   //pergamino

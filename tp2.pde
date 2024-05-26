@@ -355,7 +355,7 @@ void mouseClicked() {
 }
 //PASAR RAPIDO TIEMPO
 
-void keyPressed() {
+/*void keyPressed() {
   tiempo++;
   botoninicio=false;
-}
+}*/
